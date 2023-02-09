@@ -11,21 +11,36 @@ trait HasSlug
     protected static function bootHasSlug(): void
     {
         static::creating(function (Model $model) {
-            $newSlug = $slug = $model->slug
-                ?? str($model->{self::slugFrom()})
-                    ->append(time())
-                    ->slug()->value();
-
-            /** @var Collection $existsSlugs */
-            $existsSlugs = $model->query()->existSlugs($slug)->pluck('slug');
-            $slugIndex = 1;
-
-            while($existsSlugs->contains($newSlug)) {
-                $newSlug = "{$slug}_" . $slugIndex++;
-            }
-
-            $model->slug = $newSlug;
+            $model->makeSlug();
         });
+    }
+
+    protected function makeSlug(): void
+    {
+        if ($this->{$this->slugColumn()}) {
+            return;
+        }
+
+        $this->{$this->slugColumn()} = $this->slugUnique(
+            str($this->{$this->slugFrom()})
+                ->slug()
+                ->value()
+        );
+    }
+
+    protected function slugUnique(string $slug): string
+    {
+        $slugIndex = 1;
+        $newSlug = $slug;
+
+        /** @var Collection $existsSlugs */
+        $existsSlugs = $this->newQuery()->existSlugs($slug)->pluck('slug');
+
+        while($existsSlugs->contains($newSlug)) {
+            $newSlug = "{$slug}_" . $slugIndex++;
+        }
+
+        return $newSlug;
     }
 
     public function scopeExistSlugs(Builder $query, string $fieldValue): Builder
@@ -34,7 +49,12 @@ trait HasSlug
             ->orWhere('slug', 'LIKE', "$fieldValue%");
     }
 
-    public static function slugFrom(): string
+    protected function slugColumn(): string
+    {
+        return 'slug';
+    }
+
+    protected function slugFrom(): string
     {
         return 'title';
     }
