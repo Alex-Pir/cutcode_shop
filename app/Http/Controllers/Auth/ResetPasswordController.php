@@ -33,8 +33,8 @@ class ResetPasswordController extends Controller
             }
         );
 
-        if ($status === Password::RESET_LINK_SENT) {
-            flash()->alert(__($status));
+        if ($status === Password::PASSWORD_RESET) {
+            flash()->info(__($status));
             return back();
         }
 
