@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use DomainException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -36,6 +37,10 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+    public function report(Throwable $exception) {
+        dd($exception);
+    }
+
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -47,6 +52,12 @@ class Handler extends ExceptionHandler
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($e);
             }
+        });
+
+        $this->renderable(function (DomainException $ex) {
+            flash()->alert($ex->getMessage());
+
+            return back();
         });
     }
 }
