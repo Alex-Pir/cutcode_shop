@@ -3,6 +3,7 @@
 namespace Domain\Auth\Models;
 
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +11,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
+ * @property-read string $avatar
+ * @property string $name
  * @method static User|Builder query()
  */
 class User extends Authenticatable
@@ -50,5 +53,12 @@ class User extends Authenticatable
     public static function factory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    public function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => 'https://ui-avatars.com/api/?name=' . $this->name
+        );
     }
 }

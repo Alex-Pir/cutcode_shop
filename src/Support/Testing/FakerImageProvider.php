@@ -14,7 +14,7 @@ final class FakerImageProvider extends Base
         }
 
         $file = $this->generator->file(
-            base_path("/tests/Fixtures/images/products/$fixturesDir"),
+            base_path("/tests/Fixtures/images/$fixturesDir"),
             storage_path($storageDir),
             false
         );
