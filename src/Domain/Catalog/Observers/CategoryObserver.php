@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class CategoryObserver
 {
-    public function saved(Category $category): void
+    public function saved(Category $caegory): void
     {
         $this->clearCache();
     }
