@@ -26,10 +26,6 @@ abstract class AbstractFilter implements Stringable
 
     public function requestValue(?string $index = null, mixed $default = null): mixed
     {
-        file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/logBrands.log', print_r(request(
-                'filters.' . $this->key() . ($index ? ".$index" : ""),
-                $default
-            ), true) . "\n", FILE_APPEND);
         return request(
             'filters.' . $this->key() . ($index ? ".$index" : ""),
             $default
