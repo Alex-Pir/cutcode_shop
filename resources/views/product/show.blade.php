@@ -17,7 +17,7 @@
 
                 <div class="basis-full lg:basis-2/5 xl:basis-2/4">
                     <div class="overflow-hidden h-auto max-h-[620px] lg:h-[480px] xl:h-[620px] rounded-3xl">
-                        <img src="{{ $product->makeThumbnail('345x320') }}" class="object-cover w-full h-full"
+                        <img src="{{ $product->thumbnail }}" class="object-cover w-full h-full"
                              alt="{{ $product->title }}">
                     </div>
                 </div>
@@ -70,13 +70,10 @@
                             <div class="text-pink text-lg md:text-xl font-black">{{ $product->price }}</div>
                         </div>
 
-                        @if($product->properties)
+                        @if($product->json_properties)
                             <ul class="sm:max-w-[360px] space-y-2 mt-8">
-                                @foreach($product->properties as $property)
-                                    <li class="flex justify-between text-body">
-                                        <strong>{{ $property->title }}:</strong>
-                                        {{ $property->pivot->value }}
-                                    </li>
+                                @foreach($product->json_properties as $property => $value)
+                                    <li class="flex justify-between text-body"><strong>{{ $property }}:</strong> {{ $value }}</li>
                                 @endforeach
                             </ul>
                         @endif

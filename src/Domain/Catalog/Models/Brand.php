@@ -2,10 +2,9 @@
 
 namespace Domain\Catalog\Models;
 
-use App\Models\Product;
 use Domain\Catalog\Collections\BrandCollection;
 use Domain\Catalog\QueryBuilders\BrandQueryBuilder;
-use Illuminate\Contracts\Database\Query\Builder;
+use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

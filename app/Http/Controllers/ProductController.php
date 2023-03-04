@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use Domain\Product\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
 
 class ProductController extends Controller
 {
@@ -22,14 +21,9 @@ class ProductController extends Controller
             ->whereNot('id', $product->id)
             ->get();
 
-        $options = $product->optionValues->mapToGroups(function ($item) {
-            return [$item->option->title => $item];
-        });
-
-
         return view('product.show', [
             'product' => $product,
-            'options' => $options,
+            'options' => $product->optionValues->keyValues(),
             'viewed' => $viewedProducts,
             'also' => $also
         ]);
