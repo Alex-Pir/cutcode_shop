@@ -2,7 +2,7 @@
 
 namespace Auth\DTOs;
 
-use App\Http\Requests\SignUpFormRequest;
+use App\Http\Requests\Auth\SignUpFormRequest;
 use Domain\Auth\DTOs\NewUserDTO;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

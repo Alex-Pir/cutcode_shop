@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class ResetPasswordFormRequest extends FormRequest
+class ForgotPasswordFormRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -20,9 +19,7 @@ class ResetPasswordFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
+            'email' => ['required', 'email:dns']
         ];
     }
 }

@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use Tests\RequestFactories\SignUpFormRequestFactory;
 use Worksome\RequestFactories\Concerns\HasFactory;
 
 class SignUpFormRequest extends FormRequest
 {
     use HasFactory;
+
+    public static string $factory = SignUpFormRequestFactory::class;
 
     public function authorize(): bool
     {

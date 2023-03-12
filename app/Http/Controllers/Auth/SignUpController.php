@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\SignUpFormRequest;
+use App\Http\Requests\Auth\SignUpFormRequest;
 use Domain\Auth\Contracts\RegisterNewUserContract;
 use Domain\Auth\DTOs\NewUserDTO;
 use Illuminate\Contracts\Foundation\Application;
