@@ -29,6 +29,9 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
 
+            $table->unsignedInteger('quantity')
+                ->default(0);
+
             $table->timestamps();
         });
 

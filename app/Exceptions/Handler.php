@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->reportable(function (Throwable $e) {
             if (app()->bound('sentry')) {
@@ -53,7 +53,9 @@ class Handler extends ExceptionHandler
         $this->renderable(function (DomainException $ex) {
             flash()->alert($ex->getMessage());
 
-            return back();
+            return session()->previousUrl()
+                ? back()
+                : redirect()->route('home');
         });
     }
 }
