@@ -15,6 +15,7 @@
         "laravel/telescope": "^4.12",
         "laravel/tinker": "^2.7",
         "sentry/sentry-laravel": "^3.1",
+        "spatie/laravel-model-states": "^2.4",
         "spatie/laravel-view-models": "^1.5"
     },
     "require-dev": {

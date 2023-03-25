@@ -37,7 +37,7 @@ final class Flash
         $this->flash($message, 'alert');
     }
 
-    private function flash(string $message, string $name)
+    private function flash(string $message, string $name): void
     {
         $this->session->flash(self::MESSAGE_KEY, $message);
         $this->session->flash(self::MESSAGE_CLASS_KEY, config("flash.$name", ''));

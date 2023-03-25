@@ -18,5 +18,9 @@ class OrderServiceProvider extends ServiceProvider
         $this->app->register(
             ActionsServiceProvider::class
         );
+
+        $this->app->register(
+            PaymentServiceProvider::class
+        );
     }
 }
