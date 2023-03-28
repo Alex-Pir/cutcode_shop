@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\BasketResource;
 use App\MoonShine\Resources\BrandResource;
 use App\MoonShine\Resources\CategoryResource;
 use App\MoonShine\Resources\OptionResource;
+use App\MoonShine\Resources\OrderResource;
 use App\MoonShine\Resources\ProductResource;
 use App\MoonShine\Resources\PropertyResource;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +34,11 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('Categories', new CategoryResource()),
                 MenuItem::make('Properties', new PropertyResource()),
                 MenuItem::make('Options', new OptionResource()),
+            ]),
+
+            MenuGroup::make('Order', [
+                MenuItem::make('Basket', new BasketResource()),
+                MenuItem::make('Order', new OrderResource()),
             ]),
 
             MenuItem::make('Documentation', 'https://laravel.com')
