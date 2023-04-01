@@ -1,6 +1,6 @@
 <?php
 
-use Domain\Catalog\Models\Option;
+use Domain\Catalog\Models\Category;
 use Domain\Catalog\Models\OptionValue;
 use Domain\Product\Models\Product;
 use Illuminate\Database\Migrations\Migration;
@@ -11,16 +11,28 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('option_values', function (Blueprint $table) {
+        Schema::dropIfExists('option_value_product');
+
+        Schema::create('category_option_value', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Option::class)
+
+            $table->foreignIdFor(Category::class)
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->string('title');
-            $table->timestamps();
+            $table->foreignIdFor(OptionValue::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
+    }
+
+    public function down(): void
+    {
+        if (!app()->isProduction()) {
+            Schema::dropIfExists('category_option_value');
+        }
 
         Schema::create('option_value_product', function (Blueprint $table) {
             $table->id();
@@ -37,12 +49,5 @@ return new class extends Migration
 
             $table->timestamps();
         });
-    }
-
-    public function down(): void
-    {
-        if (!app()->isProduction()) {
-            Schema::dropIfExists('option_values');
-        }
     }
 };

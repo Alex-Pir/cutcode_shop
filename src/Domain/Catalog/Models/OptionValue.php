@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Product\Models;
+namespace Domain\Catalog\Models;
 
-use Domain\Product\Collections\OptionValueCollection;
+use Domain\Catalog\Models\Collections\OptionValueCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

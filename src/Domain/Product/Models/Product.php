@@ -6,7 +6,7 @@ use App\Jobs\ProductJsonProperties;
 use Domain\Catalog\Collections\CategoryCollection;
 use Domain\Catalog\Models\Brand;
 use Domain\Catalog\Models\Category;
-use Domain\Product\Collections\OptionValueCollection;
+use Domain\Product\Collections\ProductCollection;
 use Domain\Product\Collections\PropertyCollection;
 use Domain\Product\QueryBuilders\ProductQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,7 +31,6 @@ use Support\Traits\Models\HasThumbnail;
  * @property Brand $brand
  * @property CategoryCollection|Category[] $categories
  * @property PropertyCollection|Property[] $properties
- * @property OptionValueCollection|OptionValue[] optionValues
  *
  * @method static Product|ProductQueryBuilder query()
  */
@@ -91,13 +90,13 @@ class Product extends Model
             ->withPivot('value');
     }
 
-    public function optionValues(): BelongsToMany
-    {
-        return $this->belongsToMany(OptionValue::class);
-    }
-
     public function newEloquentBuilder($query): ProductQueryBuilder
     {
         return new ProductQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): ProductCollection
+    {
+        return new ProductCollection($models);
     }
 }

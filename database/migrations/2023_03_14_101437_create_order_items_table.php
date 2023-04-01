@@ -1,8 +1,8 @@
 <?php
 
+use Domain\Catalog\Models\OptionValue;
 use Domain\Order\Models\Order;
 use Domain\Order\Models\OrderItem;
-use Domain\Product\Models\OptionValue;
 use Domain\Product\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
