@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
             ->has(
                 ProductFactory::new()
                     ->count(10)
-                    ->hasAttached($optionValue)
                     ->hasAttached($properties, function () {
                         return ['value' => ucfirst(fake()->word())];
                     })
             )
+            ->hasAttached($optionValue)
             ->create();
     }
 }

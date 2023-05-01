@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function __invoke(Product $product): Factory|View|Application
     {
-        $product->load(['optionValues.option']);
+        $product->load(['categories.optionValues.option']);
         $viewedProducts = [];
 
         session()->put('also.' . $product->id, $product->id);
@@ -23,7 +23,7 @@ class ProductController extends Controller
 
         return view('product.show', [
             'product' => $product,
-            'options' => $product->optionValues->keyValues(),
+            'options' => $product->categories->optionKeyValues(),
             'viewed' => $viewedProducts,
             'also' => $also
         ]);

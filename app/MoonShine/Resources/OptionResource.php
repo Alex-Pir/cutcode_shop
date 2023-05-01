@@ -2,14 +2,13 @@
 
 namespace App\MoonShine\Resources;
 
-use Domain\Product\Models\Option;
+use Domain\Catalog\Models\Option;
 use Illuminate\Database\Eloquent\Model;
-
+use Leeto\MoonShine\Actions\FiltersAction;
+use Leeto\MoonShine\Decorations\Block;
+use Leeto\MoonShine\Fields\ID;
 use Leeto\MoonShine\Fields\Text;
 use Leeto\MoonShine\Resources\Resource;
-use Leeto\MoonShine\Fields\ID;
-use Leeto\MoonShine\Decorations\Block;
-use Leeto\MoonShine\Actions\FiltersAction;
 
 class OptionResource extends Resource
 {

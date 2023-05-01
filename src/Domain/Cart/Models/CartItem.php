@@ -2,7 +2,7 @@
 
 namespace Domain\Cart\Models;
 
-use Domain\Product\Models\OptionValue;
+use Domain\Catalog\Models\OptionValue;
 use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
