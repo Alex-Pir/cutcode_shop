@@ -21,6 +21,8 @@ abstract class OrderState
 
     abstract public function humanValue(): string;
 
+    abstract public function canPay(): bool;
+
     public function transitionTo(OrderState $state): void
     {
         if (!$this->canBeChanged()) {
