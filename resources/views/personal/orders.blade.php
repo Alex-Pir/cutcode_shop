@@ -13,10 +13,7 @@
         </ul>
 
         <section>
-            <!-- Section heading -->
             <h1 class="mb-8 text-lg lg:text-[42px] font-black">Мои заказы</h1>
-
-            <!-- Orders list -->
             <div class="w-full space-y-4 text-white text-sm text-left">
                 @if($orders->isEmpty())
                     <!-- Message -->
@@ -24,10 +21,6 @@
                 @else
                     @each('personal.shared.order-item', $orders, 'order')
                 @endif
-                <!-- Order item -->
-
-                <!-- End order item -->
-
             </div>
         </section>
         <div class="mt-12">
