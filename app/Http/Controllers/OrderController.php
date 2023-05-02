@@ -9,6 +9,7 @@ use Domain\Order\DTOs\OrderDTO;
 use Domain\Order\Models\DeliveryType;
 use Domain\Order\Models\PaymentMethod;
 use Domain\Order\Processes\AssignCustomer;
+use Domain\Order\Processes\AssignOptionValues;
 use Domain\Order\Processes\AssignProducts;
 use Domain\Order\Processes\ChangeStateToPending;
 use Domain\Order\Processes\CheckProductQuantities;
@@ -47,7 +48,7 @@ class OrderController extends Controller
         $customer = OrderCustomerDTO::fromArray($request->get('customer'));
 
         $order = $action(
-            OrderDTO::make($request->only(['payment_method_id', 'delivery_type_id', 'password'])),
+            OrderDTO::make(...$request->only(['payment_method_id', 'delivery_type_id', 'password'])),
             $customer,
             $request->boolean('create_account')
         );
@@ -56,6 +57,7 @@ class OrderController extends Controller
             new CheckProductQuantities(),
             new AssignCustomer($customer),
             new AssignProducts(),
+            new AssignOptionValues(),
             new ChangeStateToPending(),
             new DecreaseProductsQuantities(),
             new ClearCart()

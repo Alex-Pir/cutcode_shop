@@ -5,6 +5,7 @@ namespace Domain\Order\Processes;
 use Domain\Cart\Models\CartItem;
 use Domain\Order\Contracts\OrderProcessContract;
 use Domain\Order\Models\Order;
+use Domain\Order\Models\OrderItem;
 
 class AssignProducts implements OrderProcessContract
 {
@@ -21,6 +22,8 @@ class AssignProducts implements OrderProcessContract
                     ];
                 })->toArray()
             );
+
+        $order->update(['amount' => $order->orderItems->sum(fn (OrderItem $item) => $item->amount->raw())]);
 
         return $next($order);
     }

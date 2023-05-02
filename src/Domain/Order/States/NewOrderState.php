@@ -4,7 +4,6 @@ namespace Domain\Order\States;
 
 class NewOrderState extends OrderState
 {
-
     protected array $allowedTransitions = [
         PendingOrderState::class,
         CancelledOrderState::class
@@ -23,5 +22,10 @@ class NewOrderState extends OrderState
     public function humanValue(): string
     {
         return 'Новый заказ';
+    }
+
+    public function canPay(): bool
+    {
+        return false;
     }
 }
