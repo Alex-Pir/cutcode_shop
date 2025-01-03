@@ -9,7 +9,7 @@
         <input
             id="{{ $filter->id('from') }}"
             name="{{ $filter->name('from') }}"
-            value="{{ $filter->requestValue('from', 0) }}"
+            value="{{ $filter->requestValue('from', $filter->values()['from']) }}"
             type="number"
             class="w-full h-12 px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition"
             placeholder="От"
@@ -19,7 +19,7 @@
         <input
             id="{{ $filter->id('to') }}"
             name="{{ $filter->name('to') }}"
-            value="{{ $filter->requestValue('to', 100000) }}"
+            value="{{ $filter->requestValue('to', $filter->values()['to']) }}"
            type="number"
            class="w-full h-12 px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition"
            placeholder="До"
