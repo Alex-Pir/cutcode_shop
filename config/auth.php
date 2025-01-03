@@ -15,6 +15,8 @@ return [
     |
     */
 
+    'jwt_secret' => env('JWT_SECRET'),
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
@@ -42,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'jwt' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ]
     ],
 
     /*

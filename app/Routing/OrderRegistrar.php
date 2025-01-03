@@ -5,7 +5,6 @@ namespace App\Routing;
 use App\Contracts\RouteRegistrar;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PersonalController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
